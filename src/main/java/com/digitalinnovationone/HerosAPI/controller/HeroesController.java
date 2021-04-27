@@ -14,6 +14,7 @@ import static com.digitalinnovationone.HerosAPI.constants.HeroesConstants.HEROES
 
 @RestController
 @Slf4j
+
 public class HeroesController {
 
     HeroesService heroesService;
@@ -28,13 +29,13 @@ public class HeroesController {
 
     @GetMapping(HEROES_ENDPOINT_LOCAL)
     public Flux<Heroes> getAllHeroes() {
-        log.info("requesting the list off all heroes");
+        log.info("requesting all heroes");
         return heroesService.findAllHeroes();
     }
 
     @GetMapping(HEROES_ENDPOINT_LOCAL + "/id")
     public Mono<ResponseEntity<Heroes>> findHeroById(@PathVariable String id) {
-        log.info("requesting the hero with id {}", id);
+        log.info("requesting the hero {}", id);
         return heroesService.findHeroById(id)
                 .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -51,7 +52,7 @@ public class HeroesController {
     @ResponseStatus(code = HttpStatus.GONE)
     public Mono<HttpStatus> deleteHeroById(@PathVariable String id) {
         heroesService.deleteHeroById(id);
-        log.info("the hero with id {} has fallen", id);
+        log.info("the hero {} has fallen", id);
         return Mono.just(HttpStatus.GONE);
     }
 }

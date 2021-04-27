@@ -28,6 +28,7 @@ public class HeroesTable {
         String tableName = "Heroes_Table";
 
         try{
+            System.out.println("Creating tables, wait...");
             Table table = dynamoDB.createTable(tableName,
                 Arrays.asList(new KeySchemaElement("id", KeyType.HASH)),
                 Arrays.asList(new AttributeDefinition("id", ScalarAttributeType.S)),

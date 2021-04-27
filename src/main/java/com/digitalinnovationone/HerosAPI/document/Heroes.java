@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 @Data
+
 @NoArgsConstructor
 @DynamoDBTable(tableName = "Heroes_Table")
+
 public class Heroes {
     @Id
     @DynamoDBHashKey(attributeName = "id")
